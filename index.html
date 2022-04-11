@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Littaly Italy Grocery Store</title>
+  </head>
+  <body>
+    <script>
+      const firstName = prompt("Per favore, enter your first name: ");
+      const lastName = prompt("Per favore, enter your last name: ");
+      const addressOne = prompt("Per favore, enter your street address: ");
+      const addressTwo = prompt(
+        "Per favore, enter an alternate address (if you have one, otherwise type 'none'): "
+      );
+      const city = prompt("Per favore, enter your city: ");
+      const state = prompt("Per favore, type the full name of your state: ");
+      const zipCode = prompt("Per favore, enter your ZIP Code: ");
+      const username = prompt(
+        "Per favore, enter a username for your account: "
+      );
+      const passwordVar = prompt(
+        "Per favore, enter a password for your account: "
+      );
+
+      const loginUser = prompt("What is your username?");
+      const loginPass = prompt("What is your password?");
+      if (loginUser !== username) {
+        console.log("Username is incorrect or does not exist.");
+      } else if (passwordVar !== loginPass) {
+        console.log("You entered the wrong password.");
+      } else {
+        console.log("Benvenuto, " + username + ".");
+      }
+
+      const deliveryOrPickup = prompt(
+        "Would you like to have your order delivered, or would you like to pick it up? Type 'D' for delivery or 'P' for pick-up."
+      );
+      let decision;
+      if (deliveryOrPickup == "D") {
+        decision = 1;
+      } else if (deliveryOrPickup == "P") {
+        decision = 2;
+      } else {
+        alert("You entered an invalid option!");
+      }
+      const arrayPickup = [
+        ["1 - pizza", 12.99],
+        ["2 - gnocchi", 5.99],
+        ["3 - marinara sauce", 7.99],
+        ["4 - sausage", 9.99],
+        ["5 - pasta: shells", 4.99],
+        ["6 - pasta: spaghetti", 5.99],
+        ["7 - meat sauce", 8.99],
+        ["8 - cannoli", 3.99],
+        ["9 - prosciuto", 10.99],
+        ["10 - calamari", 15.99],
+        ["11 - calzone", 14.99],
+        ["12 - Italian bread", 8.99],
+      ];
+      const arrayDelivery = [
+        ["1 - pizza", 12.99],
+        ["2 - gnocchi", 5.99],
+        ["3 - marinara sauce", 7.99],
+        ["4 - sausage", 9.99],
+        ["5 - pasta: shells", 4.99],
+        ["6 - pasta: spaghetti", 5.99],
+        ["7 - meat sauce", 8.99],
+        ["8 - cannoli", 3.99],
+      ];
+      let arrayTypeOfOrder = [];
+      if (decision === 1) {
+        alert("Take a moment and look at pickup options! " + arrayPickup);
+        arrayTypeOfOrder = arrayPickup;
+      } else if (decision === 2) {
+        alert("Take a moment and look at delivery options! " + arrayDelivery);
+        arrayTypeOfOrder = arrayDelivery;
+      } else {
+        alert("You entered an invalid option!");
+      }
+      let orderArray = [];
+      while (true) {
+        let enterOrder = prompt(
+          "Enter the number corresponding to the item you wish to order, then when you are done, type 'x'!"
+        );
+        if (enterOrder === "x") {
+          break;
+        } else if (enterOrder < 1 || enterOrder > arrayTypeOfOrder.length) {
+          alert("Enter a valid item number!");
+        } else {
+          orderArray.push(arrayTypeOfOrder[enterOrder]);
+        }
+      }
+      alert("Your order is, " + orderArray);
+      let subtotal = 0;
+      for (let i = 0; i < orderArray.length; i++) {
+        subtotal += orderArray[i][1];
+      }
+      alert("Your subtotal is: " + subtotal);
+      let total;
+      if (decision === 1) {
+        total = subtotal * 0.7 + subtotal;
+        alert("Your total, after tax, is $" + total);
+      } else if (decision === 2) {
+        total = subtotal * 0.7 + (subtotal + 9.99);
+        alert("Your total, after tax, is $" + total);
+      } else {
+        alert("Invalid choice.");
+      }
+    </script>
+  </body>
+</html>
